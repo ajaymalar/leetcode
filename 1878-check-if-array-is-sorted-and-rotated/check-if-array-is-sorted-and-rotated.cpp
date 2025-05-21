@@ -2,6 +2,18 @@ class Solution {
 public:
     bool check(vector<int>& nums) {
         int n=nums.size();
+        int count=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(nums[i]>nums[(i+1)%n])
+            count++;
+        }
+        if(count<=1)
+        return true;
+        return false;
+
+        /*
+        int n=nums.size();
         int p=-1;
         for(int i=n-2;i>=0;i--)
         {
@@ -21,6 +33,6 @@ public:
             if(nums[i]>nums[i+1])
             return false;
         }
-        return true;
+        return true;*/
     }
 };
