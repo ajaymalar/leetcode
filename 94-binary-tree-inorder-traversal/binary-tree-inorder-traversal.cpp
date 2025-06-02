@@ -20,7 +20,7 @@ class Solution {
     }
 public:
     vector<int> inorderTraversal(TreeNode* root) {
-        vector<int>ans;
+        /*vector<int>ans;
         //inorder(root,ans);
         if(root==nullptr)
         return ans;
@@ -37,6 +37,37 @@ public:
             st.pop();
             ans.push_back(cur->val);
             cur=cur->right;
+        }
+        return ans;*/
+        vector<int>ans;
+        TreeNode*cur=root;
+        while(cur!=nullptr)
+        {
+            if(cur->left==nullptr)
+            {
+                ans.push_back(cur->val);
+                cur=cur->right;
+            }
+            else if(cur->left!=nullptr)
+            {
+                TreeNode*pre=cur->left;
+                while(pre->right && pre->right!=cur)
+                {
+                    pre=pre->right;
+                }
+                if(pre->right==nullptr)
+                {
+                    pre->right=cur;
+                    cur=cur->left;
+                }
+                else
+                {
+                    pre->right=nullptr;
+                    ans.push_back(cur->val);
+                    cur=cur->right;
+                }
+                
+            }
         }
         return ans;
     }
