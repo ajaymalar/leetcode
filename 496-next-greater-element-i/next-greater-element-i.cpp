@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
-        vector<int> ans;
+       /* vector<int> ans;
         for (int i = 0; i < nums1.size(); i++) {
             int foundIndex = -1;
             for (int j = 0; j < nums2.size(); j++) {
@@ -21,6 +21,23 @@ public:
             ans.push_back(nextGreater);
         }
 
+        return ans;*/
+        stack<int>st;
+        unordered_map<int,int>mpp;
+        for(auto n:nums2)
+        {
+            while(!st.empty() && st.top()<n)
+            {
+                mpp[st.top()]=n;
+                st.pop();
+            }
+            st.push(n);
+        }
+        vector<int>ans;
+        for(auto n:nums1)
+        {
+            ans.push_back((mpp.find(n)!=mpp.end())?mpp[n]:-1);
+        }
         return ans;
     }
 };
